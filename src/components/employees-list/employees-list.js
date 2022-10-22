@@ -1,29 +1,25 @@
-import './employees-list.css'
 import EmployeesListItem from "../employees-list-item/employees-list-item";
-import {Component} from "react";
 
-class EmployeesList extends Component {
-    render() {
-        let {data, onDelete} = this.props;
+import './employees-list.css';
 
-        const elements = data.map(item => {
-            const {id, ...itemProps} = item;
-            return (
-                // <EmployeesListItem key={item.id} name={item.name} salary={item.salary} subname={item.subname} increase={item.increase}/>
-                <EmployeesListItem
-                    key={id}
-                    {...itemProps}
-                    onDelete={() => onDelete(id)}/>
-            )
-        });
+const EmployeesList = ({data, onDelete, onToggleProp}) => {
 
+    const elements = data.map(item => {
+        const {id, ...itemProps} = item;
         return (
-            <ul className='app-list list-group'>
-                {elements}
-            </ul>
+            <EmployeesListItem 
+                key={id} 
+                {...itemProps}
+                onDelete={() => onDelete(id)}
+                onToggleProp={(e) => onToggleProp(id, e.currentTarget.getAttribute('data-toggle'))}/>
         )
-    }
-}
+    })
 
+    return (
+        <ul className="app-list list-group">
+            {elements}
+        </ul>
+    )
+}
 
 export default EmployeesList;
