@@ -1,24 +1,30 @@
 import "./app-filter.css";
 
-function AppFilter({searchBigSalary}) {
+function AppFilter(props) {
 
+    const buttonsData = [
+        {name: 'all', label: "all employees"},
+        {name: 'rise', label: "wage increase"},
+        {name: 'moreThen1000', label: "salary over 1,000"}
+    ];
+
+    const buttons = buttonsData.map(({name, label}) => {
+        const active = props.filter === name;
+        const clazz = active ? 'btn-light' : 'btn-outline-light';
+
+        return (
+            <button type="button"
+                    className={`btn ${clazz}`}
+                    key={name}
+                    onClick={() => props.onFilterSelect(name)}>
+                {label}
+            </button>
+        )
+    })
 
     return (
         <div className="btn-group">
-            <button type="button"
-                    className="btn btn-light">
-                all employees
-            </button>
-            <button type="button"
-                    className="btn btn-outline-light">
-                wage increase
-            </button>
-            <button type="button"
-                    className="btn btn-outline-light"
-                    // onClick={this.searchBigSalary}
-            >
-                salary over 1,000
-            </button>
+            {buttons}
         </div>
     )
 }

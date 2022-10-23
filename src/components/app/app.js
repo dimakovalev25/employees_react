@@ -14,12 +14,12 @@ class App extends Component {
         this.state = {
             data: [
                 {name: 'John C.', salary: 800, increase: false, rise: true, id: 1},
-                {name: 'Alex M.', salary: 3000, increase: true, rise: false, id: 2},
                 {name: 'Carl W.', salary: 1000, increase: false, rise: false, id: 3},
                 {name: 'Alex G.', salary: 3000, increase: true, rise: false, id: 4},
                 {name: 'Carl E.', salary: 400, increase: false, rise: false, id: 5}
             ],
-            term: ''
+            term: '',
+            filter: 'all'
         }
         this.maxId = 4;
     }
@@ -28,14 +28,6 @@ class App extends Component {
         this.setState(({data}) => {
             return {
                 data: data.filter(item => item.id !== id)
-            }
-        })
-    }
-
-    searchBigSalary = () => {
-         this.setState(({data}) => {
-            return {
-                data: data.filter(item => item.salary >= 1000)
             }
         })
     }
@@ -82,12 +74,27 @@ class App extends Component {
         this.setState({term: term});
     }
 
+    filterPost = (items, filter) => {
+        switch (filter) {
+            case "rise":
+                return items.filter(item => item.rise)
+            case "moreThen1000":
+                return items.filter(item => item.salary > 1000);
+            default:
+                return items
+        }
+    }
+
+    onFilterSelect = (filter) => {
+        this.setState({filter});
+    }
+
+
     render() {
-        const {data, term} = this.state;
+        const {data, term, filter} = this.state;
         const employees = this.state.data.length;
         const increased = this.state.data.filter(item => item.increase).length;
-        // const searchBigSal = this.state.data.filter(item => item.salary >= 1000);
-        const visibleData = this.searchEmp(data, term);
+        const visibleData = this.filterPost(this.searchEmp(data, term), filter);
 
         return (
             <div className="app">
@@ -95,7 +102,7 @@ class App extends Component {
 
                 <div className="search-panel">
                     <SearchPanel onUpdateSearch={this.onUpdateSearch}/>
-                    <AppFilter searchBigSalary={this.searchBigSalary}/>
+                    <AppFilter filter={filter} onFilterSelect={this.onFilterSelect}/>
                 </div>
 
                 <EmployeesList
