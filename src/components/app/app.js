@@ -24,6 +24,7 @@ class App extends Component {
         this.maxId = 4;
     }
 
+
     deleteItem = (id) => {
         this.setState(({data}) => {
             return {
