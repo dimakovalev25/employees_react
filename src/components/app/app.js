@@ -33,6 +33,7 @@ class App extends Component {
         })
     }
 
+
     searchBigSalary = () => {
          this.setState(({data}) => {
             return {
