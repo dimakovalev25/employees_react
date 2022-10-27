@@ -18,10 +18,9 @@ class Who extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.onPr(this.state.project);
+        this.props.onAdd(this.state.project);
         this.setState({
-            project: ''
-
+            project: '',
         })
     }
 
@@ -29,27 +28,30 @@ class Who extends Component {
         const {quantity, data, addProject} = this.props
         return (
             <div className="app-info">
-                <h1>Department: {this.state.dep} </h1>
-                <h2>projects: {quantity} <br/>
-                </h2>
-                <MainProjects data={data}/>
-                <form className="add-form d-flex">
+                <form
+                    onSubmit = {this.onSubmit}>
+                >
+                    <h1>Department: {this.state.dep} </h1>
+                    <h2>projects: {quantity} <br/>
+                        main project: <br/>
+                        {this.state.project}
+                    </h2>
+                    <MainProjects data={data}/>
                     <input
                         type="text"
-                        onChange={this.onInputValue}
+                        name='project'
                         value={this.state.project}
-                        name='name'
                         placeholder='main project'
+                        onChange={this.onInputValue}
 
                     />
                     <button
                         type="submit"
                         className="btn btn-outline-light"
                         onClick={addProject}
-                    >add</button>
-
+                    >add
+                    </button>
                 </form>
-
             </div>
         )
     }

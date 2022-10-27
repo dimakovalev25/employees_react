@@ -30,10 +30,7 @@ class EmployeesAddForm extends Component {
 
     render() {
         let {addItem} = this.props;
-
         return (
-
-
             <div className="app-add-form">
                 <h3>add new employees</h3>
                 <form

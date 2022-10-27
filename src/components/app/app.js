@@ -40,10 +40,10 @@ class App extends Component {
 
     addProject = (project) => {
         let newProject = {
-            id: 4,
+            id: this.newId++,
             project
         }
-        this.setState(({projects}) => {
+        this.setState(({projects, data}) => {
             const newArr = [...projects, newProject]
             return {
                 projects: newArr
@@ -75,8 +75,8 @@ class App extends Component {
             <div className="app">
                 <Who
                     data={this.state.projects}
+                    onAdd={this.addProject}
                     quantity={quantity}
-                    onPr={this.addProject}
                 />
                 <AppInfo/>
 
