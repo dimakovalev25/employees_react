@@ -15,7 +15,6 @@ function AppFilter({searchBigSalary}) {
             </button>
             <button type="button"
                     className="btn btn-outline-light"
-                    // onClick={this.searchBigSalary}
             >
                 salary over 1,000
             </button>
