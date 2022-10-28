@@ -30,11 +30,10 @@ class Who extends Component {
             <div className="app-info">
                 <form
                     onSubmit = {this.onSubmit}>
-                >
                     <h1>Department: {this.state.dep} </h1>
                     <h2>projects: {quantity} <br/>
                         main project: <br/>
-                        {this.state.project}
+                        {/*{this.state.project}*/}
                     </h2>
                     <MainProjects data={data}/>
                     <input
