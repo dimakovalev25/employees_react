@@ -7,16 +7,17 @@ import EmployeesAddForm from "../employees-add-form/employees-add-form";
 
 
 function App() {
-    const data = [
-        {name: 'John C.', salary: 900, increase: false},
-        {name: 'Mark A.', salary: 1900, increase: true},
-        {name: 'Jo C.', salary: 1900, increase: true},
 
+
+    const data = [
+        {id: 1, name: 'John C.', salary: 900, increase: true},
+        {id: 2, name: 'Mark A.', salary: 1900, increase: false},
+        {id: 3, name: 'Jo C.', salary: 1900, increase: false},
     ];
 
     return (
         <div className='app'>
-            soft by_react
+            by_react
             <AppInfo/>
             <div className='search-panel'>
                 <SearchPanel/>
