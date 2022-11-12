@@ -8,7 +8,6 @@ class AppInfo extends Component {
             task: 1,
             mainTask: ''
         }
-
     }
 
     addTask = () => {
@@ -18,7 +17,6 @@ class AppInfo extends Component {
     }
 
     commitInput = (e) => {
-        // console.log(e.target.value)
         this.setState({
             mainTask: e.target.value
         })
@@ -27,10 +25,10 @@ class AppInfo extends Component {
     render() {
         return (
             <div className='app-info'>
-                <h1>employees records:
+                <h1>employees records
                 </h1>
-                <h2>headcount:</h2>
-                <h2>give out a bonus:</h2>
+                <h2>headcount: {this.props.numberOfWorkes}</h2>
+                <h2>give out a bonus: {this.props.numberOfLike}</h2>
                 <h2>task: {this.state.task}</h2>
                 <button
                     onClick={this.addTask}
